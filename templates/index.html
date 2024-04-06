@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <title>Nordeste Nacional</title>
+    </head>
+<body>
+    <div class="cabecalho">
+        <h1 class="titulo-abertura">O Nordeste é a segunda porção mais populosa do Brasil. </h1> 
+        <p class="linha-fina-abertura">Estas foram as últimas dez vezes em que a região foi citada no Jornal Nacional</p>
+    </div>
+    <div class="rodape">
+        <p>Este projeto é <strong>experimental</strong>. O robô considera os nomes por extenso dos estados nordestinos, as siglas das Unidades Federativas e o nome das capitais escritos com capitular. Para entender como o filtro funciona, acesse o <strong><span style="text-decoration: underline;"><a target="_blank" href="https://github.com/cindydamasceno/nordestenacional">repositório da plataforma.</span></a></p></strong>
+    </div>
+<div class="resultado_raspagem">
+    <div class="div-atualiza">
+        <p class="atualizacao">Atualizado todos os dias às 12h</p>
+    </div>
+    
+    <div class="resultado">
+        <p class="setas-referencia"> MAIS RECENTE <strong>↑</strong></p>
+        {% for item in material_nordeste %}
+        <h2 class="titulo"> 
+            <span class="data">{{ item['DATA_PUB'] }} (HÁ {{ item['QNT_DIAS'] }} DIAS) </span> • {{ item['TITULO']}}
+            <a target="_blank" class="leia-mais" href="{{ item['URL'] }}"> LEIA +</a></h2>
+            <h3 class="sumario">{{ item["LINHA-FINA"] }}</h3>
+            <hr>
+            {% endfor %}
+            <p class="setas-referencia"> MENOS RECENTE <strong>↓</strong></p>
+        </div>
+</div>
+
+</body>
+</html>
