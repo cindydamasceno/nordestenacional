@@ -20,7 +20,7 @@ def raspador():
     data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
     salva_planilha()
     
-    return f"Dados raspados em {data}"
+    return f"Dados raspados em {data_raspagem}"
 
 @app.route("/")
 def home():
