@@ -16,11 +16,11 @@
     </div>
 <div class="resultado_raspagem">
     <div class="div-atualiza">
-        <p class="atualizacao">Atualizado todos os dias às 12h</p>
+        <p class="atualizacao">Última atualização: {{ data_raspagem }}</p>
     </div>
     
     <div class="resultado">
-        <p class="setas-referencia"> MAIS RECENTE <strong>↑</strong></p>
+        <p class="setas-referencia"> MAIS RECENTE <strong>⇣</strong></p>
         {% for item in material_nordeste %}
         <h2 class="titulo"> 
             <span class="data">{{ item['DATA_PUB'] }} (HÁ {{ item['QNT_DIAS'] }} DIAS) </span> • {{ item['TITULO']}}
@@ -28,7 +28,7 @@
             <h3 class="sumario">{{ item["LINHA-FINA"] }}</h3>
             <hr>
             {% endfor %}
-            <p class="setas-referencia"> MENOS RECENTE <strong>↓</strong></p>
+            <p class="setas-referencia"> MENOS RECENTE <strong>⇡</strong></p>
         </div>
 </div>
 
