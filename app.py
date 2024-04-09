@@ -33,5 +33,17 @@ def home():
         item["QNT_DIAS"]=(datetime.now() - datetime.strptime(item["DATA_PUB"], '%d/%m/%Y')).days
     return render_template("index.html",material_nordeste=material_nordeste,data_raspagem=data_raspagem)
 
+@app.route("/portfolio/home")
+def portfolio_home():
+    return render_template("index_portfolio.html")
+
+@app.route("/portfolio/cursos")
+def portfolio_cursos():
+    return render_template("cursos_portfolio.html")
+
+@app.route("/portfolio/bio")
+def portfolio_bio():
+    return render_template("bio_portfolio.html")
+
 if __name__== "__main__":
     app.run(debug=True)

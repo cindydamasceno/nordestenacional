@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Fehlauer - Projetos, cursos e bio</title>
+    <div class="menu">
+        <a href="/portfolio/home">Projetos</a>
+        <a href="/portfolio/cursos">Cursos</a>
+        <a href="/portfolio/bio">Paulo Fehlauer</a>
+    </div>
+    <style>
+        .menu {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            color: rgb(164, 43, 43);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        h5 {
+            font-size: 15px;
+            margin-bottom: 30px;
+            margin-top: 5px;
+            text-align: center;
+            font-weight: 200;
+        }
+
+        
+        .botao-site {
+            text-align: center !important;
+        }
+
+        .botao {
+            display: inline-block;
+            text-align: center;
+            background-color: rgb(164, 43, 43);
+            color: #fff !important;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;;
+        }
+
+        .titulo-especial {
+            text-align: center;
+            color: rgb(164, 43, 43);
+        }
+
+        .titulo-projetos {
+            text-align: center;
+            color: rgb(61, 48, 70);
+        }
+
+        .curso {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .curso .botao {
+            text-align: center !important;
+ 
+        }
+
+        .curso img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .curso iframe {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            font-size: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Paulo Fehlauer</h1>
+        <h5>Jornalismo, arte e literatura</h5>
+        <h2 class="titulo-especial">Institucionais</h2>
+
+        <div class="curso">
+            <img src="{{url_for('static',filename='img/mulher-luz.png')}}"
+                alt="Mulheres Luz">
+            <h2 class="titulo-projetos">Mulheres Luz</h2>
+
+            <h3>Desafio</h3>
+            <p>Mulheres Luz é uma plataforma digital que nasce com o objetivo de visibilizar, difundir e democratizar o
+                acesso aos conteúdos produzidos por fotógrafas e mulheres da imagem no Brasil, reunindo ensaios e
+                portfólios voltados a diversos temas, tempos e territórios, além de veicular pesquisas e publicações
+                culturais. Para atingir os seus objetivos, as autoras do projeto precisavam de uma plataforma que
+                permitisse a inscrição automatizada de pessoas e portfólios, além da organização de um banco de
+                profissionais da imagem e a veiculação de conteúdo próprio.</p>
+
+            <h3>Atuação</h3>
+            <p>Arquitetura da informação, Customização de CMS, Desenvolvimento Frontend, Desenvolvimento Wordpress</p>
+
+            <h3>Entregas</h3>
+            <ul>
+                <li>Plataforma web responsiva</li>
+                <li>Banco de profissionais</li>
+                <li>Galeria de portfólios</li>
+                <li>Canais de conteúdo</li>
+                <li>Integração com loja virtual</li>
+                <li>Sistema de submissão</li>
+                <li>Painel WordPress customizado</li>
+                <li>Hospedagem e manutenção</li>
+            </ul>
+            <div class="botao-site">
+                <a target="_blank" href="https://www.mulheresluz.com.br/" class="botao">Acesse o site do projeto</a>
+            </div>
+        </div>
+
+        <div class="curso">
+            <iframe width="460" height="315" src="https://www.youtube.com/embed/kbh8g6V5PP4?si=Nmmc35EUOa9WrU2m"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h2 class="titulo-projetos">Bühler + M. Dias Branco</h2>
+
+            <h3>Desafio</h3>
+            <p>A Bühler global desejava contar a história de sucesso de sua parceria com a M. Dias Branco, companhia que
+                fabrica, comercializa e distribui alimentos processados em todo o Brasil. O vídeo deveria mostrar a
+                amplitude dessa atuação e ressaltar a importância de se manter uma relação próxima com os seus clientes.
+            </p>
+
+            <h3>Atuação</h3>
+
+            <p>Coordenação de pós-produção, Direção audiovisual, Drone, Edição de vídeo, Entrevista</p>
+
+            <h3>Entregas</h3>
+            <ul>
+                <li>Vídeo institucional seguindo guidelines aprovados globalmente</li>
+                <li>Produção de imagens (vídeo, fotografias e aéreas) para banco corporativo</li>
+            </ul>
+        </div>
+
+        <div class="curso">
+            <iframe width="460" height="315" src="https://www.youtube.com/embed/PQ0aR40eL_o?si=ugQJ_2Pdk1-FCiUM"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+            <h2 class="titulo-projetos">Planejamento pedagógico na perspectiva inclusiva</h2>
+
+            <h3>Desafio</h3>
+            <p>Para o curso “Planejamento pedagógico na perspectiva inclusiva”, o Instituto Rodrigo Mendes precisava
+                desenvolver uma série de aulas em vídeo em que a acessibilidade (libras e audiodescrição) fosse
+                integrada à narrativa.</p>
+
+            <h3>Atuação</h3>
+            <p>Coordenação de pós-produção, Direção audiovisual, Direção de fotografia, Edição de vídeo</p>
+
+            <h3>Entregas</h3>
+            <ul>
+                <li>Série de videoaulas com recursos de acessibilidade</li>
+                <li>Legendagem</li>
+            </ul>
+            <div class="botao-site">
+                <a target="_blank" href="https://formacao.institutorodrigomendes.org.br/curso/planejamento-pedagogico-na-perspectiva-inclusiva" class="botao">Acesse o site do projeto</a>
+            </div>
+        </div>
+
+        <h2 class="titulo-especial">Autorais</h2>
+
+        <div class="curso">
+            <img src="{{url_for('static',filename='img/extremo-oeste.jpeg')}}" alt="Extremo Oeste">
+            <h2 class="titulo-projetos">Extremo Oeste</h2>
+            <p>Meu primeiro romance, Extremo Oeste foi vencedor do Prêmio Cepe de Literatura (melhor romance, 2021) e do
+                Jabuti (escritor estreante, 2023).</p>
+
+            <h3>Onde encontrar</h3>
+            <ul>
+                <li><a
+                        href="https://www.amazon.com.br/Extremo-oeste-Paulo-Fehlauer-ebook/dp/B0B5WKWTZQ/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3CQRXR3JUGG61&keywords=extremo+oeste+fehlauer&qid=1704288555&sprefix=extremo+oeste+fehlaue%2Caps%2C231&sr=8-1">Amazon</a>
+                </li>
+                <li><a
+                        href="https://www.cepe.com.br/lojacepe/livros/vi-premio-cepe-nacional-de-literatura/extremo-oeste">Editora
+                        Cepe</a></li>
+                <li><a href="https://www.martinsfontespaulista.com.br/extremo-oeste-1007560/p">Martins Fontes
+                        Paulista</a></li>
+            </ul>
+        </div>
+
+        <div class="curso">
+            <img src="{{url_for('static',filename='img/sob-ataque.webp')}}"
+                alt="Sob Ataque">
+            <h2 class="titulo-projetos">Sob Ataque</h2>
+            <p>O trabalho explora as tensões históricas que se acumulam e transformam a paisagem da zona central de São
+                Paulo a partir de uma fotografia feita por Gustavo Prugner por ocasião da Revolução de 1924.</p>
+
+            <h3>Exibições</h3>
+            <ul>
+                <li>2022
+                    <ol><br>
+                        <li>Pavão Cultural - Campinas - SP</li>
+                    </ol>
+                </li><br>
+                <li>2020
+                    <ol><br>
+                        <li>Pequeno Encontro da Fotografia (online)</li>
+                        <li>Salão de Artes Visuais de Vinhedo - SP</li>
+                        <li>FIF-BH - Festival Internacional de Fotografia de Belo Horizonte - MG</li>
+                    </ol>
+                </li><br>
+                <li>2019
+                    <ol><br>
+                        <li>Casa da Imagem - Museu da Cidade de São Paulo - SP</li>
+                        <ol>
+                </li><br>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Projeto para a disciplina Algoritmos de Automação do Insper. © 2024 Christina Souza, Cindy Damasceno,
+                João Barbosa, Paulo Fehlauer e Sumaia Villela</p>
+        </footer>
+</body>
+
+</html>

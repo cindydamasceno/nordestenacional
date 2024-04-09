@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Fehlauer - Projetos, cursos e bio</title>
+    <div class="menu">
+        <a href="/portfolio/home">Projetos</a>
+        <a href="/portfolio/cursos">Cursos</a>
+        <a href="/portfolio/bio">Paulo Fehlauer</a>`
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .menu {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            color: rgb(164, 43, 43);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1px;
+        }
+
+        .containercontato {
+            max-width: 200px;
+            margin: 0 auto;
+            padding: 1px;
+            text-align: center;
+        }
+
+        .titulo-especial {
+            text-align: center;
+            color: rgb(164, 43, 43);
+        }
+
+        .curso {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .curso img {
+            max-width: 40%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .descricao {
+            text-align: center
+        }
+
+        .contato {
+            margin-bottom: 3px;
+            padding: 3px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        h5 {
+            font-size: 15px;
+            margin-bottom: 30px;
+            margin-top: 5px;
+            text-align: center;
+            font-weight: 200;
+        }
+
+
+        .redes-sociais a {
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .redes-sociais a:hover {
+            color: #007bff;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 5px;
+            text-align: center;
+            font-size: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="curso">
+            <img src="{{url_for('static',filename='img/paulo-bio.jpg')}}"
+                alt="Foto de Paulo Fehlauer">
+            <h2 class="titulo-projetos">Paulo Fehlauer</h2>
+            <p class="descricao" style="margin: 0;">Marechal Cândido Rondon, Paraná, 1982</p><br>
+            <p>Jornalista, escritor, fotógrafo, artista visual, realizador audiovisual e pesquisador. Mestre em Estudos
+                Literários pela Universidade Federal de São Paulo (2020), e finalizando um doutorado em Teoria Literária
+                na Unicamp. Graduado em jornalismo pela USP (2009), com especialização em Formação de Escritores pelo
+                Instituto Vera Cruz (2017).
+            <p> Fui vencedor do 6º Prêmio Cepe Nacional de Literatura em 2021 e, em 2023, do Prêmio Jabuti na categoria
+                Escritor Estreante com o romance <a
+                    href="https://www.cepe.com.br/noticias/romance-extremo-oeste--cepe--vence-a-categoria-escritor-estreante-do-premio-jabuti"
+                    target="_blank">Extremo Oeste</a>.</p>
+            <img src="{{url_for('static',filename='img/extremo-oeste.jpeg')}}"
+                alt="livro Extremo Oeste, vencedor do Jabuti 2023 na categoria Escritor Estreante"><br>
+            <p>Atuo há 15 anos na área de comunicação institucional, com perfil interdisciplinar e experiência em
+                produção executiva, planejamento, gerenciamento e execução de projetos multiplataforma, como vídeos
+                institucionais, webséries, cursos EAD, plataformas web e canais de conteúdo institucional.</p>
+            <p>Fundador e sócio da <a href="https://www.garapa.org/" target="_blank">Garapa Produções</a>, desde 2008
+                tenho sido responsável por coordenar e produzir trabalhos criativos e inovadores, tanto para empresas,
+                como Samsung, Coca-Cola, Vale e Natura, quanto para organizações como Itaú Cultural, Instituto Rodrigo
+                Mendes e PNUD-ONU.</p>
+            <p>Jornalista graduado pela USP, produzi reportagens, ensaios fotográficos e documentários para veículos
+                como Folha de S. Paulo, The Wall Street Journal, Society Magazine, Magnum Photos e El Mundo.</p>
+            <p>Como desenvolvedor web, tenho planejado, coordenado e construído plataformas para clientes do Brasil e
+                exterior, como FGV, Instituto Cultural da Dinamarca, Instituto Italiano de Cultura e Nadar Ensemble
+                (Bélgica).</p>
+            <p>Como artista visual multimídia, participei da fundação da Casa da Cultura Digital e do Coletivo Garapa,
+                tendo obras premiadas e exibidas em instituições como MASP, MAM-SP, Itaú Cultural e Instituto Moreira
+                Salles.</p>
+            <img src="{{url_for('static',filename='img/sob-ataque-2.webp')}}"
+                alt="Um dos trabalhos autorais da Garapa" class="larger-img"><br>
+            <p>Tenho atuado também como professor convidado e coordenador de atividades de criação coletiva em
+                instituições como FAAP, IED, Edelman e Centro de la Imagen (Peru). Em Nova York, EUA, onde aprimorei meu
+                conhecimento da língua inglesa e atuei como fotógrafo e assistente de ensino em projetos sociais do
+                International Center of Photography.</p>
+        </div>
+    </div>
+    <div class="containercontato">
+        <h3 class="titulo-especial">Contato</h3>
+        <p>(11) 97579-9668<br>
+            <a href="mailto:paulofeh@gmail.com">paulofeh@gmail.com</a>
+        </p>
+        <div class="redes-sociais" style="margin-bottom: 20px;">
+            <a href="https://www.instagram.com/fehlauer/"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/fehlauer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/paulo-fehlauer/?originalSubdomain=br"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/paulofeh"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+    <footer>
+        <p>Projeto para a disciplina Algoritmos de Automação do Insper. © 2024 Christina Souza, Cindy Damasceno, João
+            Barbosa, Paulo Fehlauer e Sumaia Villela</p>
+    </footer>
+</body>
