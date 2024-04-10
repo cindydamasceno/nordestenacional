@@ -143,7 +143,7 @@ URL_RASPADOR=os.getenv("URL_RASPADOR")
 #### Filtragem 
 Este protótipo considera apenas reportagens categorizadas como `type=materias` no site do [Jornal Nacional do G1](http://g1.globo.com/jornal-nacional/). 
 
-Nomenclaturas e variações dos esados nordestinos: 
+Nomenclaturas e variações dos estados nordestinos: 
 ```Python
   referencias = [ # UF E CAPITAIS
               "Alagoas","AL", "Maceió",
