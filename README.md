@@ -61,11 +61,52 @@ def home():
 
 ### Automatização e API Sheets
 
-O Nordeste Nacional não faz raspagem em tempo real a cada acesso à página inicial. Por trás da página há um banco de dados persistente, construído em planilha Google Sheets. Desta forma, o que aparece para o usuário é consequência da última raspagem de informação. O robô adiciona à planilha somente dados novos, evitando a duplicidade de entradas. 
+O Nordeste Nacional não faz raspagem em tempo real a cada acesso à página inicial. Por trás da página há um banco de dados persistente, construído em planilha Google Sheets. Esta escolha contorna possíveis problemas oriundos de falta de conexão com a página, já que mantém uma base de dados fixa independente do site. 
 
-Esta escolha contorna possíveis problemas oriundos de falta de conexão com a página. 
+Desta forma, o que aparece para o usuário é consequência da última raspagem de informação. O robô adiciona à planilha somente reportagens novas, evitando a duplicidade de entradas a cada raspagem. As reportagens são, em seguida, organizadas da mais recente para a menos recente. 
 
+```Python
+#planilha_nordeste_nacional.py
+def salva_planilha():
+  data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
+  aba=formata_planilha()
+  df=df_nordeste()
+  planilha=pd.DataFrame(aba.get_all_records()) # LÊ COMO DATAFRAME
 
+  # TRANSFORMA CADA LINHA EM LISTA PARA VERIFICAÇÃO E ADIÇÃO EM LOTE
+  dados_planilha=planilha.values.tolist()
+  dados_raspados=[linha.tolist() for index, linha in df.iterrows()]
+  dados_novos=[linha for linha in dados_raspados if linha not in dados_planilha]
+  
+  #  ADICIONA SOMENTE OS DADOS NOVOS NAS PLANILHAS
+  print("-----------IMPRIMINDO DADOS ADICIONADOS-----------")
+  print(dados_novos)
+
+  try:
+    aba.append_rows(dados_novos)
+    print(f"Dados adicionados na planilha:{data_raspagem}")
+  except Exception as e:
+    print("Nenhum dado novo adicionado na planilha:",str(e))
+  
+  planilha_atualizada=pd.DataFrame(aba.get_all_records()) # DATAFRAME DA VERSÃO NOVA
+
+  return planilha_atualizada
+
+# ORGANIZA CONTEÚDO DA TABELA NA HOME (app.py):
+
+def home():
+    global data_raspagem
+    # data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
+    df=pd.read_csv(URL_PLANILHA)
+    df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
+    df=df.sort_values(by=["QNT_DIAS"])
+    material_nordeste_json=df.to_json(orient="records",force_ascii=False,indent=4)
+    material_nordeste=json.loads(material_nordeste_json)
+    # for item in material_nordeste:
+    #     item["QNT_DIAS"]=(datetime.now() - datetime.strptime(item["DATA_PUB"], '%d/%m/%Y')).days
+    return render_template("index.html",material_nordeste=material_nordeste,data_raspagem=data_raspagem)
+
+```
 
 #### Como rodar este código
 
@@ -122,7 +163,3 @@ Nomenclaturas e variações dos esados nordestinos:
   ]
 
 ```
-
-
-
-
