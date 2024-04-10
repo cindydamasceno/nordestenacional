@@ -29,16 +29,41 @@ O Nordeste Nacional traz diariamente as últimas dez citações aos estados nord
 
 Este acesso utiliza gatilhos HTTP para agendar as raspagens. Uma url do Nordeste Nacional, omitida por questões de segurança, ativa o raspador ao ser acessada. Este processo faz parte de um sistema de comunicação entre duas ferramentas chamado _webhook_. O Nordeste nacional utiliza a plataforma Pipedream para agendar o acionador. 
 
-A data da raspagem é armazenada em um arquivo JSON, gerado no momento de acesso ao site e resgatado na página inicial a partir da variável `data_raspagem``. 
+A data da raspagem é armazenada em uma célula específica na Planilha e é atualizada no momento de acesso ao site. Esta informação é resgatado na página inicial a partir da variável `data_raspagem``. 
 
 ```Python
+# CRIA VARIÁVEL DATA DE RASPAGEM NA FUNÇÃO obter_data_planilha
+
+def salva_data():
+    # CREDENCIAIS API SHEETS
+    data=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime("%d-%m-%Y-%Hh%M")
+    conta = ServiceAccountCredentials.from_json_keyfile_name("KEY_SHEET.json") # CREDENCIAL
+    api = gspread.authorize(conta)
+    db = api.open_by_key(ID_SHEET)
+    aba_data=db.get_worksheet(1) # SEGUNDA ABA PARA SALVAR SOMENTE A DATA
+    aba_data.update_title(f"Data de atualização:{data}") # RENOMEIA PELA DATA DO LOOPING DO CODIGO
+    print(f"Nome da aba: {aba_data}")
+
+    # CRIAÇAO DE DATA
+    data_raspador=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
+    aba_data.update_cell(1,1,data_raspador)
+
+    return aba_data
+
+def obter_data_planilha():
+    # CREDENCIAIS API SHEETS
+    conta = ServiceAccountCredentials.from_json_keyfile_name("KEY_SHEET.json") # CREDENCIAL
+    api = gspread.authorize(conta)
+    db = api.open_by_key(ID_SHEET)
+    aba_data = db.get_worksheet(1) # SEGUNDA ABA PARA A DATA
+    data_raspagem = aba_data.cell(1, 1).value
+    return data_raspagem
+
 
 # GATILHO WEBHOOK PELO PIPEDREAM (ATUALIZA PLANILHA E SALVA DATA DE ATUALIZACAO)
 @app.route(f"/{URL_RASPADOR}", methods=["GET"])
 def raspador():
-  ....
-    with open ("atualizacao.json", "w") as f:
-        f.write(json.dumps(data_raspagem, ensure_ascii=False))
+  salva_data()
   ....
 
 @app.route("/")
@@ -86,15 +111,12 @@ def salva_planilha():
 # ORGANIZA CONTEÚDO DA TABELA NA HOME (app.py):
 
 def home():
-    
-    # data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
+    data_raspagem=obter_data_planilha()
     df=pd.read_csv(URL_PLANILHA)
     df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
     df=df.sort_values(by=["QNT_DIAS"])
     material_nordeste_json=df.to_json(orient="records",force_ascii=False,indent=4)
     material_nordeste=json.loads(material_nordeste_json)
-    # for item in material_nordeste:
-    #     item["QNT_DIAS"]=(datetime.now() - datetime.strptime(item["DATA_PUB"], '%d/%m/%Y')).days
     return render_template("index.html",material_nordeste=material_nordeste,data_raspagem=data_raspagem)
 
 ```
