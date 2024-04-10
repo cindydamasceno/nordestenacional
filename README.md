@@ -27,7 +27,7 @@ A apresentação do autor está dividida em três páginas: **projetos**, **curs
 
 O Nordeste Nacional traz diariamente as últimas dez citações aos estados nordestinos no Jornal Nacional. Por trás da ferramenta está um raspador que acessa, diariamente, a página do Jornal Nacional no g1 às 12h e seleciona as notícias com base em um filtro pré-definido. 
 
-Este acesso utiliza webhook para agendar as raspagens. Uma url do Nordeste Nacional, omitida por questões de segurança, ativa o raspador ao ser acessada. Este processo faz parte de um sistema de comunicação entre duas ferramentas chamado _webhook_. O Nordeste nacional utiliza a plataforma Pipedream para agendar o acionador. 
+Este acesso utiliza gatilhos HTTP para agendar as raspagens. Uma url do Nordeste Nacional, omitida por questões de segurança, ativa o raspador ao ser acessada. Este processo faz parte de um sistema de comunicação entre duas ferramentas chamado _webhook_. O Nordeste nacional utiliza a plataforma Pipedream para agendar o acionador. 
 
 A data da raspagem é armazenada na variável global `data_raspagem`, definida no momento de acesso ao site. 
 

@@ -10,21 +10,22 @@ URL_RASPADOR=os.getenv("URL_RASPADOR")
 
 app=Flask(__name__,template_folder="templates")
 
-# CRIA VARIÁVEL GLOBAL COM A DATA DE RASPAGEM
-data_raspagem=None
-
 # GATILHO WEBHOOK PELO PIPEDREAM (ATUALIZA PLANILHA)
 @app.route(f"/{URL_RASPADOR}", methods=["GET"])
 def raspador():
-    global data_raspagem # ARMAZENA O VALOR NA VARIÁVEL data_raspagem 
+
     data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
+    with open ("atualizacao.json", "w") as f:
+        f.write(json.dumps(data_raspagem, ensure_ascii=False))
+
     salva_planilha()
     
     return f"Dados raspados em {data_raspagem}"
 
 @app.route("/")
 def home():
-    global data_raspagem
+    f=open("atualizacao.json")
+    data_raspagem=json.load(f)
     # data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
     df=pd.read_csv(URL_PLANILHA)
     df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
