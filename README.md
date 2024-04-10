@@ -29,39 +29,30 @@ O Nordeste Nacional traz diariamente as últimas dez citações aos estados nord
 
 Este acesso utiliza gatilhos HTTP para agendar as raspagens. Uma url do Nordeste Nacional, omitida por questões de segurança, ativa o raspador ao ser acessada. Este processo faz parte de um sistema de comunicação entre duas ferramentas chamado _webhook_. O Nordeste nacional utiliza a plataforma Pipedream para agendar o acionador. 
 
-A data da raspagem é armazenada na variável global `data_raspagem`, definida no momento de acesso ao site. 
+A data da raspagem é armazenada em um arquivo JSON, gerado no momento de acesso ao site e resgatado na página inicial a partir da variável `data_raspagem``. 
 
 ```Python
-# CRIA VARIÁVEL GLOBAL COM A DATA DE RASPAGEM
-data_raspagem=None
 
-# GATILHO WEBHOOK PELO PIPEDREAM (ATUALIZA PLANILHA)
+# GATILHO WEBHOOK PELO PIPEDREAM (ATUALIZA PLANILHA E SALVA DATA DE ATUALIZACAO)
 @app.route(f"/{URL_RASPADOR}", methods=["GET"])
 def raspador():
-    global data_raspagem # ARMAZENA O VALOR NA VARIÁVEL data_raspagem 
-    data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
-    salva_planilha()
-    
-    return f"Dados raspados em {data_raspagem}"
+  ....
+    with open ("atualizacao.json", "w") as f:
+        f.write(json.dumps(data_raspagem, ensure_ascii=False))
+  ....
 
 @app.route("/")
 def home():
-    global data_raspagem
-    # data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
-    df=pd.read_csv(URL_PLANILHA)
-    material_nordeste_json=df.to_json(orient="records",force_ascii=False,indent=4)
-    material_nordeste=json.loads(material_nordeste_json)
-    for item in material_nordeste:
-        item["QNT_DIAS"]=(datetime.now() - datetime.strptime(item["DATA_PUB"], '%d/%m/%Y')).days
-    return render_template("index.html",material_nordeste=material_nordeste,data_raspagem=data_raspagem)
+    f=open("atualizacao.json")
+    data_raspagem=json.load(f)
+    ...
 ```
-
 
 <hr>
 
 ### Automatização e API Sheets
 
-O Nordeste Nacional não faz raspagem em tempo real a cada acesso à página inicial. Por trás da página há um banco de dados persistente, construído em planilha Google Sheets. Esta escolha contorna possíveis problemas oriundos de falta de conexão com a página, já que mantém uma base de dados fixa independente do site. 
+O Nordeste Nacional não faz raspagem em tempo real a cada acesso à página inicial. Por trás da interface existe um banco de dados persistente, construído e atualizado em planilha Google Sheets. Esta escolha contorna possíveis problemas oriundos de falta de conexão com o g1, já que mantém uma armazenamento fixo independente do site. 
 
 Desta forma, o que aparece para o usuário é consequência da última raspagem de informação. O robô adiciona à planilha somente reportagens novas, evitando a duplicidade de entradas a cada raspagem. As reportagens são, em seguida, organizadas da mais recente para a menos recente. 
 
@@ -95,7 +86,7 @@ def salva_planilha():
 # ORGANIZA CONTEÚDO DA TABELA NA HOME (app.py):
 
 def home():
-    global data_raspagem
+    
     # data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
     df=pd.read_csv(URL_PLANILHA)
     df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
@@ -108,7 +99,7 @@ def home():
 
 ```
 
-#### Como rodar este código
+#### Como configurar o ambiente para este código
 
 Certifique se adicionar em um arquivo `.env` as variáveis no seguinte formato:
 
@@ -120,20 +111,23 @@ URL_PLANILHA = "URL_PLANILHA_EM_CSV"
 
 ```
 
-
 #### Autentificação e variáveis de ambiente
 
 ```Python
 # ATENÇÃO: ESTE CÓDIGO PODE APRESENTAR PROBLEMAS DE PERFORMANCE EM VERSÕES DO PYTHON SUPERIORES A 3.11.7
 
-## VARIÁVEIS DE AMBIENTE
+from dotenv import load_dotenv, find_dotenv
+
 import os
+
+load_dotenv()
+find_dotenv()
 
 ID_SHEET= os.getenv("ID_SHEET") # ENDEREÇO DA PLANILHA A SER EXPLORADA COMO BANCO PERSISTENTE
 
 with open ("KEY_SHEET.json", "w") as f:
    f.write(os.environ["KEY_SHEET"]) # GERA UM ARQUIVO KEY_SHEET.json PARA SER ACHAMADO NO CÓDIGO
-
+   
 URL_PLANILHA=os.getenv("URL_PLANILHA") # URL DA PLANILHA PARA CHAMAR NO FRONT-END
 
 URL_RASPADOR=os.getenv("URL_RASPADOR")
