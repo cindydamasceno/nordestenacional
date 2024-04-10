@@ -2,15 +2,20 @@ import pandas as pd
 from datetime import datetime, timedelta,timezone
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import os
+import os,json
+from dotenv import load_dotenv, find_dotenv
 
 from nordeste_nacional import procura_nordeste
 
-########################### CREDENCIAIS ############################
+######### CREDENCIAIS ###############
+load_dotenv()
+find_dotenv()
+
 ID_SHEET=os.getenv("ID_SHEET")
 
-with open ("KEY_SHEET.json", "w") as f:
-   f.write(os.environ["KEY_SHEET"])
+with open("KEY_SHEET.json", "w") as f:
+    f.write(os.environ["KEY_SHEET"])
+
 ######################################################################
    
 ## CRIA PLANILHA
@@ -67,7 +72,5 @@ def salva_planilha():
     print("Nenhum dado novo adicionado na planilha:",str(e))
   
   planilha_atualizada=pd.DataFrame(aba.get_all_records()) # DATAFRAME DA VERSÃO NOVA
-  planilha_atualizada["DATA_PUB"]=pd.to_datetime(planilha_atualizada["DATA_PUB"])
-  planilha_organizada=planilha_atualizada.sort_values(by=["DATA_PUB"])
 
-  return planilha_organizada
+  return planilha_atualizada
