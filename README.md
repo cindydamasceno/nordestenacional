@@ -7,9 +7,9 @@ _Provisoriamente, este repositório está armazenando todos os exercícios finai
 ## **NAVEGUE PELO REPOSITÓRIO**
 | **Exercício** | **Documentação** | **Repositório** |
 ------------|-------------- | --------- |
-| Portfólio Parte 2 | [Portfólio Parte 2](https://github.com/cindydamasceno/nordestenacional/edit/main/README.md#p%C3%A1gina-din%C3%A2mica) | [[LINK]](https://github.com/cindydamasceno/nordestenacional/blob/main/app.py) |
-| Página Dinâmica | [Página Dinâmica](https://github.com/cindydamasceno/nordestenacional/edit/main/README.md#p%C3%A1gina-din%C3%A2mica) | [[APP]](https://github.com/cindydamasceno/nordestenacional/blob/main/app.py)/[[RASPADOR]](https://github.com/cindydamasceno/nordestenacional/blob/main/nordeste_nacional.py) |
-| Nordeste Nacional | [Automatização e API Sheets](https://github.com/cindydamasceno/nordestenacional/edit/main/README.md#p%C3%A1gina-din%C3%A2mica) | [[LINK]](https://github.com/cindydamasceno/nordestenacional/blob/main/planilha_nordeste_nacional.py) |
+| Portfólio Parte 2 | [Portfólio Parte 2](https://github.com/cindydamasceno/nordestenacional#portf%C3%B3lio-parte-2) | [[LINK]](https://github.com/cindydamasceno/nordestenacional/blob/main/app.py) |
+| Página Dinâmica | [Página Dinâmica](https://github.com/cindydamasceno/nordestenacional#p%C3%A1gina-din%C3%A2mica) | [[APP]](https://github.com/cindydamasceno/nordestenacional/blob/main/app.py)/[[RASPADOR]](https://github.com/cindydamasceno/nordestenacional/blob/main/nordeste_nacional.py) |
+| Nordeste Nacional (Projeto final) | [Automatização e API Sheets](https://github.com/cindydamasceno/nordestenacional#automatiza%C3%A7%C3%A3o-e-api-sheets) | [[LINK]](https://github.com/cindydamasceno/nordestenacional/blob/main/planilha_nordeste_nacional.py) |
 
 <hr>
 
