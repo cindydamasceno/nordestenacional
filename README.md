@@ -61,9 +61,11 @@ def home():
 
 ### Automatização e API Sheets
 
-O Nordeste Nacional não faz raspagem em tempo real a cada acesso à home. Por trás da página há um banco de dados persistente, construído em planilha Google Sheets. Desta forma, o que aparece para o usuário é consequência da última raspagem de informação. 
+O Nordeste Nacional não faz raspagem em tempo real a cada acesso à página inicial. Por trás da página há um banco de dados persistente, construído em planilha Google Sheets. Desta forma, o que aparece para o usuário é consequência da última raspagem de informação. O robô adiciona à planilha somente dados novos, evitando a duplicidade de entradas. 
 
 Esta escolha contorna possíveis problemas oriundos de falta de conexão com a página. 
+
+
 
 #### Como rodar este código
 
