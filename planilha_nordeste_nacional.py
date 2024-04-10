@@ -6,10 +6,6 @@ import os
 
 from nordeste_nacional import procura_nordeste
 
-####### ESTE CÓDIGO ESTÁ ESTÁVEL APENAS NA VERSÃO PYTHON 3.9.19 ##########
-from dotenv import load_dotenv,find_dotenv
-load_dotenv()
-
 ########################### CREDENCIAIS ############################
 ID_SHEET=os.getenv("ID_SHEET")
 
