@@ -12,11 +12,12 @@ _Provisoriamente, este repositório está armazenando todos os exercícios da di
 
 ### Portfólio (Parte 2)
 
-Adaptação do portfólio de Paulo Fehlauer para `framework Flask`. A apresentação do autor está dividida em três páginas: **projetos**, **cursos** e **bio**.
-Para armazenar imagens localmente no github foi utilizada a pasta `static` em paralelo à função `url_for`, nativa do framework. 
-
-
-
+Adaptação do portfólio de Paulo Fehlauer para `framework Flask`. Para armazenar imagens localmente no github foi utilizada a pasta `static` em paralelo à função `url_for`, nativa do framework. <br><br>
+A apresentação do autor está dividida em três páginas: **projetos**, **cursos** e **bio**.
+- Home ([/portfolio/home](https://nordeste-nacional.onrender.com/portfolio/home))
+- Cursos ([/portfolio/cursos](https://nordeste-nacional.onrender.com/portfolio/cursos))
+- Bio ([/portfolio/bio](https://nordeste-nacional.onrender.com/portfolio/bio))
+ 
 ### Página dinâmica
 
 
