@@ -25,7 +25,7 @@ def home():
     df=pd.read_csv(URL_PLANILHA)
     df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
     df=df.sort_values(by=["QNT_DIAS"])
-    df=df.iloc[0:9]
+    df=df.iloc[0:10]
     material_nordeste_json=df.to_json(orient="records",force_ascii=False,indent=4)
     material_nordeste=json.loads(material_nordeste_json)
     return render_template("index.html",material_nordeste=material_nordeste,data_raspagem=data_raspagem)
