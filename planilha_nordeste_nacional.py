@@ -67,5 +67,6 @@ def salva_planilha():
     print("Nenhum dado novo adicionado na planilha:",str(e))
   
   planilha_atualizada=pd.DataFrame(aba.get_all_records()) # DATAFRAME DA VERSÃO NOVA
+  planilha_organizada=planilha_atualizada.sort_values(by="DATA_PUB")
 
-  return planilha_atualizada
+  return planilha_organizada
