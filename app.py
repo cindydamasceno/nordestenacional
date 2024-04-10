@@ -2,6 +2,7 @@ import pandas as pd,json,os
 from flask import Flask, render_template,url_for,jsonify
 from datetime import datetime, timedelta,timezone
 from planilha_nordeste_nacional import salva_planilha
+from salva_data import salva_data, obter_data_planilha
 
 ########################### CREDENCIAIS ############################
 URL_PLANILHA=os.getenv("URL_PLANILHA") # URL DA PLANILHA PARA CHAMAR NO FRONT-END
@@ -13,19 +14,14 @@ app=Flask(__name__,template_folder="templates")
 # GATILHO WEBHOOK PELO PIPEDREAM (ATUALIZA PLANILHA)
 @app.route(f"/{URL_RASPADOR}", methods=["GET"])
 def raspador():
-
-    data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime('%d/%m/%Y às %Hh%M')
-    with open ("atualizacao.json", "w") as f:
-        f.write(json.dumps(data_raspagem, ensure_ascii=False))
-
+    data_raspagem=datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-3))).strftime("%d-%m-%Y-%Hh%M")
+    salva_data()
     salva_planilha()
-    
     return f"Dados raspados em {data_raspagem}"
 
 @app.route("/")
 def home():
-    f=open("atualizacao.json")
-    data_raspagem=json.load(f)
+    data_raspagem=obter_data_planilha()
     df=pd.read_csv(URL_PLANILHA)
     df["QNT_DIAS"] = (datetime.now() - pd.to_datetime(df["DATA_PUB"], format='%d/%m/%Y')).dt.days
     df=df.sort_values(by=["QNT_DIAS"])
